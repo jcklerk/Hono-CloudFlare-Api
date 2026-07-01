@@ -1,7 +1,5 @@
-// import db from "@/lib/db";
-// import { userFiles } from "@/lib/db/schema";
+// import db, { and, eq, not, userFiles } from "@/lib/db";
 // import type { R2Config } from "better-auth-cloudflare";
-// import { and, eq, not } from "drizzle-orm";
 // export function createR2Config(env?: Cloudflare.Env, ctx?: ExecutionContext) {
 // 	if (!env?.R2_BUCKET) {
 // 		return {};

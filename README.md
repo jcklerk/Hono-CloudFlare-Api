@@ -15,9 +15,20 @@ This is a template for building a Cloudflare Worker API using Hono, Drizzle, and
 
 ## Requirements
 
-To get started with this template, you need to have Node.js LTS installed and bun. You can install bun from [https://bun.sh/](https://bun.sh/).
+To get started with this template, you need to have Node.js LTS installed and bun. You can install bun from [bun.sh](https://bun.sh/).
 And install node.js thro NVM form [nvm-sh/nvm](https://github.com/nvm-sh/nvm).
 
 ## Note
 
 This template will be tuned over time to make it easier to build an api for your project. If you have any suggestions or feedback, please feel free to open an issue or submit a pull request.
+
+## TODO list
+
+- [ ] Implement email wrapper for sending emails so you can use any email service you want.
+- [ ] Implement email templates for better email experience.
+- [ ] Implement openapi documentation for the api.
+
+- [ ] Set up websocket support for real-time communication.
+
+- [ ] Add better documentation and examples for using the template.
+- [ ] Add examples for using it with expo.
