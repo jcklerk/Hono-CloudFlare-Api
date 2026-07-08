@@ -1,8 +1,4 @@
 import { drizzleAdapter } from "@better-auth/drizzle-adapter";
-import type {
-	D1Database,
-	IncomingRequestCfProperties,
-} from "@cloudflare/workers-types";
 import { betterAuth } from "better-auth";
 import { withCloudflare } from "better-auth-cloudflare";
 import { createEmailAndPasswordAuthConfig } from "./account/emailAndPassword";
