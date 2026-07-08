@@ -1,5 +1,5 @@
 {
-	"name": "hono-cloudflare-api",
+	"name": "@template/api",
 	"type": "module",
 	"scripts": {
 		"dev": "wrangler dev",

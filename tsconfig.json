@@ -12,5 +12,7 @@
 		"jsx": "react-jsx",
 		"jsxImportSource": "hono/jsx",
 		"types": ["bun-types", "hono/types"]
-	}
+	},
+	"include": ["src/index.ts", "worker-configuration.d.ts"],
+	"exclude": ["node_modules"]
 }
