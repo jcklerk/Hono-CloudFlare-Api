@@ -1,12 +1,13 @@
-import { createAuth } from "@/lib/auth";
 import db from "@/lib/db";
 import type { MiddlewareHandler } from "hono";
 import { Hono } from "hono";
+import type { auth } from "./auth";
 
 // Factory function to create a new Hono app with the correct environment type
 
 type Variables = {
-	auth: ReturnType<typeof createAuth>;
+	user: typeof auth.$Infer.Session.user | null;
+	session: typeof auth.$Infer.Session.session | null;
 	db: typeof db;
 };
 

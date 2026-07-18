@@ -6,6 +6,7 @@ import { createEmailVerificationConfig } from "./account/emailVerification";
 import { createUserConfig } from "./account/user";
 import { createD1Config } from "./cloudflare/d1";
 import trustedOrigins from "./trustedOrigins";
+import { admin } from "better-auth/plugins/admin";
 // Single auth configuration that handles both CLI and runtime scenarios
 function createAuth(
 	env?: Cloudflare.Env,
@@ -50,7 +51,7 @@ function createAuth(
 				...createEmailVerificationConfig(ctx),
 				...createUserConfig(ctx),
 
-				plugins: [],
+				plugins: [admin()],
 
 				rateLimit: {},
 			},

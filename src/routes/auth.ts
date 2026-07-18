@@ -1,5 +1,5 @@
-import { createAuth } from "@/lib/auth";
-import { createHonoApp, named } from "@/lib/hono";
+import { auth } from "@/lib/auth";
+import { createHonoApp } from "@/lib/hono";
 import { cors } from "hono/cors";
 
 const R = createHonoApp();
@@ -34,24 +34,27 @@ R.use(
 );
 
 // Middleware to initialize auth instance for each request
-R.use(
-	"*",
-	named("Auth", async (c, next) => {
-		const auth = createAuth(
-			c.env,
-			(c.req.raw as any).cf || {},
-			new URL(c.req.url).origin,
-			c.executionCtx as unknown as ExecutionContext,
-		);
-		c.set("auth", auth);
-		await next();
-	}),
-);
+// Middleware to initialize auth instance for each request
+R.use("*", async (c, next) => {
+	const session = await auth.api.getSession({ headers: c.req.raw.headers });
+
+	if (!session) {
+		c.set("user", null);
+		c.set("session", null);
+		return next();
+	}
+
+	c.set("user", session.user);
+	c.set("session", session.session);
+	return next();
+});
 
 // Handle all auth routes
 R.all("/api/auth/*", async (c) => {
-	const auth = c.get("auth");
-	return auth.handler(c.req.raw);
+	return auth.handler(c.req.raw).catch((err) => {
+		console.error(err);
+		return c.json({ error: "Authentication failed", message: err }, 401);
+	});
 });
 
 // Simple health check

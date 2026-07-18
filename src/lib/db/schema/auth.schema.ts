@@ -16,7 +16,10 @@ export const users = sqliteTable("users", {
 		.default(sql`(cast(unixepoch('subsecond') * 1000 as integer))`)
 		.$onUpdate(() => /* @__PURE__ */ new Date())
 		.notNull(),
-	isAnonymous: integer("is_anonymous", { mode: "boolean" }).default(false),
+	role: text("role"),
+	banned: integer("banned", { mode: "boolean" }).default(false),
+	banReason: text("ban_reason"),
+	banExpires: integer("ban_expires", { mode: "timestamp_ms" }),
 });
 
 export const sessions = sqliteTable(
@@ -44,6 +47,7 @@ export const sessions = sqliteTable(
 		colo: text("colo"),
 		latitude: text("latitude"),
 		longitude: text("longitude"),
+		impersonatedBy: text("impersonated_by"),
 	},
 	(table) => [index("sessions_userId_idx").on(table.userId)],
 );
